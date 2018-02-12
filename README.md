@@ -1,4 +1,4 @@
-# citizensLoader1a
+# citizensLoader_e2b
 
 [![Join the chat at https://gitter.im/Arquisoft/citizensLoader1a](https://badges.gitter.im/Arquisoft/citizensLoader1a.svg)](https://gitter.im/Arquisoft/citizensLoader1a?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/Arquisoft/citizensLoader1a.svg?branch=master)](https://travis-ci.org/Arquisoft/citizensLoader1a)
@@ -7,10 +7,16 @@
 
 Skeleton of Citizens Loader module
 
-# Authors
+# Authors 2017
 
-Daniel Alba Muñiz (UO245188)
-José Luis Bugallo González (UO244702)
-Ignacio Escribano Burgos (UO227766)
-Daniel Duque Barrientos (UO245553)
-Rubén de la Varga Cabero (UO246977)
+* Daniel Alba Muñiz (UO245188)
+* José Luis Bugallo González (UO244702)
+* Ignacio Escribano Burgos (UO227766)
+* Daniel Duque Barrientos (UO245553)
+* Rubén de la Varga Cabero (UO246977)
+
+# Authors 2018
+
+* Pablo Hevia Viejo (UO251259)
+* Pelayo Martínez Capela (UO250985)
+* Gemma González Gil (UO236976)
