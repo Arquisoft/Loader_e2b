@@ -10,14 +10,12 @@ import java.util.Map;
 import com.opencsv.CSVReader;
 
 public class ParserCSV {
-	public static final char SEPARADOR = ',';
-	public static final char SALTO = '\n';
 
 	public Map<String, String> read() throws IOException {
 		CSVReader reader = null;
 		Map<String, String> map = new HashMap<String, String>();
 		try {
-			reader = new CSVReader(new FileReader("users.csv"), SEPARADOR, SALTO);
+			reader = new CSVReader(new FileReader("users.csv"));
 		
 			List<String[]> datos = reader.readAll();
 			
