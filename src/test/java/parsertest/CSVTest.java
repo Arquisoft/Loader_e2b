@@ -7,15 +7,22 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import parser.agentes.ParserCSV;
 
 public class CSVTest {
 
+	ParserCSV parser = null;
+	
+	@Before
+	public void setUp() {
+		parser = new ParserCSV();
+	}
+	
 	@Test
 	public void testOK() throws IOException {
-		ParserCSV parser = new ParserCSV();
 		Map<String, String> datos = parser.read("users.csv");
 
 		StringBuilder sb = new StringBuilder();
@@ -29,7 +36,6 @@ public class CSVTest {
 
 	@Test(expected = FileNotFoundException.class)
 	public void testFileNotFoundException() throws IOException {
-		ParserCSV parser = new ParserCSV();
 		Map<String, String> datos = parser.read("usuarios.csv");
 
 		StringBuilder sb = new StringBuilder();
