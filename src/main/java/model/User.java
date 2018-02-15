@@ -45,19 +45,6 @@ public class User implements Serializable {
 		generarPassword();
 	}
 
-	/**
-	 * CONSTRUCTOR PARA LOS NUEVOS USUARIOS
-	 * @param stringCellValue
-	 * @param stringCellValue2
-	 * @param stringCellValue3
-	 * @param dateCellValue
-	 * @param stringCellValue4
-	 */
-	public User(String nombre, String localizacion, String email, String identificador,
-			String tipo) {
-		// TODO Auto-generated constructor stub
-	}
-
 	private void setPassword(String password) {
 		this.password = password;
 	}
