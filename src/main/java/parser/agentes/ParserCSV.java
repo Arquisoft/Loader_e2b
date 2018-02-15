@@ -1,6 +1,5 @@
 package parser.agentes;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,23 +10,20 @@ import com.opencsv.CSVReader;
 
 public class ParserCSV {
 
-	public Map<String, String> read() throws IOException {
+	public Map<String, String> read(String file) throws IOException {
 		CSVReader reader = null;
 		Map<String, String> map = new HashMap<String, String>();
-		try {
-			reader = new CSVReader(new FileReader("users.csv"));
-		
-			List<String[]> datos = reader.readAll();
-			
-			for(String[] linea: datos) {
-				map.put(linea[0], linea[1]);
-			}
-		} catch (FileNotFoundException e) {
-			throw new FileNotFoundException("No se encuentra el fichero " + e);
-		} finally {
-			if (reader != null)
-				reader.close();
+
+		reader = new CSVReader(new FileReader(file));
+
+		List<String[]> datos = reader.readAll();
+
+		for (String[] linea : datos) {
+			map.put(linea[0], linea[1]);
 		}
+
+		reader.close();
+
 		return map;
 	}
 }

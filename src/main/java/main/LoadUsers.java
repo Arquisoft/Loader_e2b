@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.lowagie.text.DocumentException;
 
 import parser.ReaderSingleton;
-import parser.agentes.ParserCSV;
 
 /**
  * Main application
@@ -15,10 +14,7 @@ import parser.agentes.ParserCSV;
  */
 public class LoadUsers {
 
-	public static void main(String... args) throws DocumentException, IOException {
-		ParserCSV p = new ParserCSV();
-		p.read();
-		
+	public static void main(String... args) throws DocumentException, IOException {	
 		final LoadUsers runner = new LoadUsers();
 		runner.run(args);
 	}
