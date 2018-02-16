@@ -9,12 +9,12 @@ import org.junit.Test;
 
 public class UserTest {
 
-	User user1 = null;
-	User user2 = null;
-	User user3 = null;
-	User user4 = null;
-	User user5 = null;
-	User user6 = null;
+	Ciudadano user1 = null;
+	Ciudadano user2 = null;
+	Ciudadano user3 = null;
+	Ciudadano user4 = null;
+	Ciudadano user5 = null;
+	Ciudadano user6 = null;
 
 	@Before
 	public void setUp() {

@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import com.lowagie.text.DocumentException;
 
-import model.User;
+import model.Ciudadano;
 import parser.cartas.*;
 
 public class LetterTest {
@@ -20,7 +20,7 @@ public class LetterTest {
 	public void creadasCorrectamente() throws FileNotFoundException, DocumentException, IOException {
 		Letter letter = new PdfLetter();
 		Date date = new Date(System.currentTimeMillis());
-		User user1 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654321P");
+		Ciudadano user1 = new Ciudadano("Paco", "francisco@gmail.com", "87654321P");
 		letter.createLetter(user1);
 
 		File file = new File("cartas/pdf/87654321P.pdf");

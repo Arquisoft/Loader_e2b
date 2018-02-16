@@ -5,15 +5,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-import model.User;
+import model.Ciudadano;
+import model.Usuario;
 
 public class TxtLetter extends Letter{
 	private Writer writer;
 
-	public void createLetter(User user) throws IOException{
-		File letter = new File("cartas/txt/" + user.getDNI() + ".txt");
+	public void createLetter(Usuario user) throws IOException{
+		File letter = new File("cartas/txt/" + user.getCodigo() + ".txt");
 		writer = new FileWriter(letter);
-		writer.write("Usuario: " + user.getUsername() + "\n" + "Password: "
-				+ user.getPassword());
+		if(user instanceof Ciudadano) {
+			writer.write("Usuario: " + ((Ciudadano) user).getUsername() + "\n" + "Password: "
+				+ ((Ciudadano) user).getPassword());
+		}
 	}
 }

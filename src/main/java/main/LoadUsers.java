@@ -29,8 +29,10 @@ public class LoadUsers {
 				System.err.println(
 						"La operacion load necesita al menos otro " + "argumento con la ubicacion del fichero");
 			else {
-				for (int i = 1; i <= args.length - 1; i++)
-					ReaderSingleton.getInstance().loadFile(args[i]);
+				//for (int i = 1; i <= args.length - 1; i++)
+					//ReaderSingleton.getInstance().loadFile(args[i]);
+				System.out.println(args[1]+" - "+args[2]);
+				ReaderSingleton.getInstance().loadFile(args[1],args[2]);
 			}
 		}
 	}

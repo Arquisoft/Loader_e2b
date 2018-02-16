@@ -11,7 +11,8 @@ import javax.persistence.PersistenceException;
 
 import com.lowagie.text.DocumentException;
 
-import model.User;
+import model.Ciudadano;
+import model.Usuario;
 import parser.cartas.Letter;
 import parser.cartas.PdfLetter;
 import parser.cartas.TxtLetter;
@@ -23,14 +24,14 @@ import reportwriter.ReportWriter;
 public class InsertP implements Insert {
 
 	@Override
-	public User save(User user) throws FileNotFoundException, DocumentException, IOException {
+	public Usuario save(Usuario user) throws FileNotFoundException, DocumentException, IOException {
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		try {
-			if (!UserFinder.findByDNI(user.getDNI()).isEmpty()) {
+			if (!UserFinder.findByDNI(user.getCodigo()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
-						"El usuario con el dni " + user.getDNI() + " ya existe en la base de datos");
+						"El usuario con el dni " + user.getCodigo() + " ya existe en la base de datos");
 				trx.rollback();
 			} else if (!UserFinder.findByEmail(user.getEmail()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
@@ -58,12 +59,12 @@ public class InsertP implements Insert {
 	}
 
 	@Override
-	public List<User> findByDNI(String dni) {
+	public List<Ciudadano> findByDNI(String dni) {
 		return UserFinder.findByDNI(dni);
 	}
 
 	@Override
-	public List<User> findByEmail(String email) {
+	public List<Ciudadano> findByEmail(String email) {
 		return UserFinder.findByEmail(email);
 	}
 }

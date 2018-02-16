@@ -6,7 +6,8 @@ import java.util.List;
 
 import com.lowagie.text.DocumentException;
 
-import model.User;
+import model.Ciudadano;
+import model.Usuario;
 
 /**
  * 
@@ -15,9 +16,9 @@ import model.User;
  *
  */
 public interface Insert {
-	User save(User user) throws FileNotFoundException, DocumentException, IOException;
+	List<Ciudadano> findByDNI(String dni);
 
-	List<User> findByDNI(String dni);
+	List<Ciudadano> findByEmail(String email);
 
-	List<User> findByEmail(String email);
+	Usuario save(Usuario user) throws FileNotFoundException, DocumentException, IOException;
 }
