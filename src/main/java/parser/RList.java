@@ -43,7 +43,7 @@ public class RList implements ReadList {
 	 * @throws DocumentException 
 	 */
 	@Override
-	public void load(String path) throws FileNotFoundException, DocumentException{
+	public void load(String path) throws FileNotFoundException{
 		InputStream excelFile = null;
 		XSSFWorkbook excel = null;
 		allUsers = new ArrayList<List<XSSFCell>>();
@@ -106,7 +106,7 @@ public class RList implements ReadList {
 		this.aF = aF;
 	}
 
-	private void crearUsuarios(List<XSSFCell> list) throws FileNotFoundException, DocumentException, IOException {
+	private void crearUsuarios(List<XSSFCell> list){
 		User user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
 				list.get(2).getStringCellValue(), list.get(3).getDateCellValue(), 
 				list.get(4).getStringCellValue(),list.get(5).getStringCellValue(), 

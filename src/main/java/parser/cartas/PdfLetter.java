@@ -12,9 +12,10 @@ import model.User;
 
 public class PdfLetter extends Letter{
 	private Document document;
-	public  void createLetter(User user) throws DocumentException, FileNotFoundException{
+	public  void createLetter(User user){
 		document = null;
 		FileOutputStream letter = null;
+		try {
 		letter = new FileOutputStream(
 				"cartas/pdf/" + user.getDNI() + ".pdf");
 		document = new Document();
@@ -22,6 +23,15 @@ public class PdfLetter extends Letter{
 		document.open();
 		document.add(new Paragraph("Usuario: " + user.getUsername()
 				+ "\n Password: " + user.getPassword()));
-		document.close();
+		
+		System.out.println("Se ha generado la carta " + user.getDNI() + ".pdf correctamente.");
+		} catch(DocumentException  | FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			document.close();
+		}
+		
+		
 	}
 }
