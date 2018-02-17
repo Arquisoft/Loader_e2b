@@ -13,19 +13,26 @@ import model.Usuario;
 
 public class PdfLetter extends Letter{
 	private Document document;
-	public  void createLetter(Usuario user) throws DocumentException, FileNotFoundException{
+	public  void createLetter(User user){
 		document = null;
 		FileOutputStream letter = null;
+		try {
 		letter = new FileOutputStream(
 				"cartas/pdf/" + user.getCodigo() + ".pdf");
 		document = new Document();
 		PdfWriter.getInstance(document, letter);
 		document.open();
-		if(user instanceof Ciudadano) {
-			document.add(new Paragraph("Usuario: " + ((Ciudadano) user).getUsername()
-			+ "\n Password: " + ((Ciudadano) user).getPassword()));
+		document.add(new Paragraph("Usuario: " + user.getUsername()
+				+ "\n Password: " + user.getPassword()));
+		
+		System.out.println("Se ha generado la carta " + user.getDNI() + ".pdf correctamente.");
+		} catch(DocumentException  | FileNotFoundException e) {
+			e.printStackTrace();
 		}
-				
-		document.close();
+		finally {
+			document.close();
+		}
+		
+		
 	}
 }

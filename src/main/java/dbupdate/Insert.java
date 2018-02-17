@@ -1,13 +1,8 @@
 package dbupdate;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
-import com.lowagie.text.DocumentException;
-
-import model.Ciudadano;
-import model.Usuario;
+import model.User;
 
 /**
  * 
@@ -16,7 +11,7 @@ import model.Usuario;
  *
  */
 public interface Insert {
-	List<Ciudadano> findByDNI(String dni);
+	User save(User user);
 
 	List<Ciudadano> findByEmail(String email);
 

@@ -1,7 +1,5 @@
 package dbupdate;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -9,14 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 
-import com.lowagie.text.DocumentException;
-
-import model.Ciudadano;
-import model.Usuario;
-import parser.cartas.Letter;
-import parser.cartas.PdfLetter;
-import parser.cartas.TxtLetter;
-import parser.cartas.WordLetter;
+import model.User;
+import parser.cartas.LetterGenerator;
 import persistence.UserFinder;
 import persistence.util.Jpa;
 import reportwriter.ReportWriter;
@@ -24,7 +16,7 @@ import reportwriter.ReportWriter;
 public class InsertP implements Insert {
 
 	@Override
-	public Usuario save(Usuario user) throws FileNotFoundException, DocumentException, IOException {
+	public User save(User user)  {
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
@@ -40,12 +32,11 @@ public class InsertP implements Insert {
 			} else {
 				Jpa.getManager().persist(user);
 				trx.commit();
-				Letter letter = new PdfLetter();
-				letter.createLetter(user);
-				letter = new TxtLetter();
-				letter.createLetter(user);
-				letter = new WordLetter();
-				letter.createLetter(user);
+				
+				LetterGenerator.generateTxtLetter(user);
+				LetterGenerator.generatePdfLetter(user);
+				LetterGenerator.generateWordLetter(user);
+				
 			}
 		} catch (PersistenceException ex) {
 			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "Error de la BBDD");

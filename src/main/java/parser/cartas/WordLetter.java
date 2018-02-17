@@ -17,21 +17,29 @@ import com.lowagie.text.DocumentException;
 public class WordLetter extends Letter{
 	private FileOutputStream carta;
 	
-	public void createLetter(Usuario user) throws FileNotFoundException, DocumentException, IOException {
+	public void createLetter(User user){
 		XWPFDocument documento = new XWPFDocument();
 		File folder = new File("carta/word");
 		folder.mkdir();
-		carta = new FileOutputStream(
-				"cartas/word/" + user.getCodigo() + ".docx");
-		XWPFParagraph paragraph = documento.createParagraph();
-		XWPFRun run = paragraph.createRun();
-		if(user instanceof Ciudadano) {
-			run.setText("Usuario: " + ((Ciudadano) user).getUsername());
+		try {
+			carta = new FileOutputStream(
+					"cartas/word/" + user.getDNI() + ".docx");
+			XWPFParagraph paragraph = documento.createParagraph();
+			XWPFRun run = paragraph.createRun();
+			run.setText("Usuario: " + user.getUsername());
 			run.addBreak();
-			run.setText("Password: " + ((Ciudadano) user).getPassword());
-		}		
-		documento.write(carta);
-		documento.close();
-		carta.close();
+			run.setText("Password: " + user.getPassword());
+			documento.write(carta);
+			
+			documento.close();
+			
+			carta.close();
+			
+			System.out.println("Se ha generado la carta " + user.getDNI() + ".docx correctamente.");
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 }
