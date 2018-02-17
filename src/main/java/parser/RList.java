@@ -128,16 +128,17 @@ public class RList implements ReadList {
 
 	private void crearUsuarios(List<XSSFCell> list){
 		Usuario user = null; 
+		InsertR insert = new InsertR();
 		// Si no tiene la fila de coordenadas
-	    if(list.size()==4) {
+		if(list.size()==4) {
 	    	// Si es de tipo 3 - Ciudadano
-	    	if(list.get(3).getNumericCellValue()==3) { 
+	    	if(list.get(3).getNumericCellValue()==1) { 
 	  	      user = new Ciudadano(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(), 
 	  	          list.get(2).getStringCellValue()); 
 	  	    } 
 	    } 
-		InsertR insert = new InsertR();
-		insert.save(user);
+		if(user!=null)
+			insert.save(user);
 		//getaF().saveData(user);
 	}
 	
