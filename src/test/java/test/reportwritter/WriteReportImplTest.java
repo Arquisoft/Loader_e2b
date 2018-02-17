@@ -1,4 +1,4 @@
-package reportwritter;
+package test.reportwritter;
 
 import java.util.logging.Level;
 import static org.junit.Assert.*;

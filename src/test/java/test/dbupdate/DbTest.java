@@ -1,4 +1,4 @@
-package dbupdate;
+package test.dbupdate;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
