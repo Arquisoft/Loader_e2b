@@ -6,7 +6,7 @@
 
 Loader e2b module
 
-> mvn package
+> mvn package<br>
 > java -jar .\target\Loader2b-0.0.1-jar-with-dependencies.jar load[test.xlsx]
 
 # Authors 2017
@@ -22,3 +22,4 @@ Loader e2b module
 * Pablo Hevia Viejo (UO251259)
 * Pelayo Martínez Capela (UO250985)
 * Gemma González Gil (UO236976)
+* Erik Gabriel González García (UO224164)
