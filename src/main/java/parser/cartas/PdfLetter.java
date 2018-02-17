@@ -29,9 +29,12 @@ public class PdfLetter extends Letter{
 				
 		
 		System.out.println("Se ha generado la carta " + Usuario.getCodigo() + ".pdf correctamente.");
-		} catch(DocumentException  | FileNotFoundException e) {
+		} catch(DocumentException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		
 		finally {
 			document.close();
 		}
