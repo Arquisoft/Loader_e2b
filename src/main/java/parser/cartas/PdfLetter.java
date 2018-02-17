@@ -8,20 +8,34 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 
-import model.User;
+import model.Ciudadano;
+import model.Usuario;
 
 public class PdfLetter extends Letter{
 	private Document document;
-	public  void createLetter(User user) throws DocumentException, FileNotFoundException{
+	public  void createLetter(Usuario Usuario){
 		document = null;
 		FileOutputStream letter = null;
+		try {
 		letter = new FileOutputStream(
-				"cartas/pdf/" + user.getDNI() + ".pdf");
+				"cartas/pdf/" + Usuario.getCodigo() + ".pdf");
 		document = new Document();
 		PdfWriter.getInstance(document, letter);
 		document.open();
-		document.add(new Paragraph("Usuario: " + user.getUsername()
-				+ "\n Password: " + user.getPassword()));
-		document.close();
+		if(Usuario instanceof Ciudadano) {
+			document.add(new Paragraph("Usuario: " + ((Ciudadano)Usuario).getUsername()
+			+ "\n Password: " + ((Ciudadano)Usuario).getPassword()));
+		}
+				
+		
+		System.out.println("Se ha generado la carta " + Usuario.getCodigo() + ".pdf correctamente.");
+		} catch(DocumentException  | FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			document.close();
+		}
+		
+		
 	}
 }

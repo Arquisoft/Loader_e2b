@@ -21,9 +21,10 @@ public class ReaderSingleton {
 		return instance;
 	}
 
-	public void loadFile(String cad) throws DocumentException {
+	public void loadFile(String cad, String cad2) throws DocumentException {
 		try{
-			loader.load(cad);
+			loader.loadCSV(cad2);
+			loader.loadExcel(cad);
 		}catch (FileNotFoundException e) {
 			System.err.println("No se ha encontrado el archivo excel especificado.");
 			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "No se ha encontrado el archivo excel");

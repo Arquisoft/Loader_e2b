@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 import reportwriter.ReportWriter;
@@ -21,12 +22,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.lowagie.text.DocumentException;
 
 import executer.*;
-import model.User;
+import model.Ciudadano;
+import model.Usuario;
+import parser.agentes.ParserCSV;
 
 
 public class RList implements ReadList {
 	private ActionFacade aF = new ActionFacadeClass();
 	private ArrayList<List<XSSFCell>> allUsers;
+	private Map<String, String> datosCSV;
 
 	/**
 	 * Lee el fichero excel de la ruta pasada por parametro Si el fichero no
@@ -43,7 +47,7 @@ public class RList implements ReadList {
 	 * @throws DocumentException 
 	 */
 	@Override
-	public void load(String path) throws FileNotFoundException, DocumentException{
+	public void loadExcel(String path) throws FileNotFoundException{
 		InputStream excelFile = null;
 		XSSFWorkbook excel = null;
 		allUsers = new ArrayList<List<XSSFCell>>();
@@ -97,6 +101,21 @@ public class RList implements ReadList {
 			}
 		}
 	}
+	
+	@Override
+	public void loadCSV(String path) throws DocumentException, FileNotFoundException{
+		ParserCSV parser = new ParserCSV();
+		try{
+			datosCSV = parser.read(path);
+		}catch(IOException e) {
+			System.err.println("Problema con la lectura del csv");
+			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "Problema con la lectura del csv");
+		}
+		if(datosCSV == null) {
+			throw new FileNotFoundException();
+		}
+			
+	}
 
 	public ActionFacade getaF() {
 		return aF;
@@ -106,11 +125,12 @@ public class RList implements ReadList {
 		this.aF = aF;
 	}
 
-	private void crearUsuarios(List<XSSFCell> list) throws FileNotFoundException, DocumentException, IOException {
-		User user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
-				list.get(2).getStringCellValue(), list.get(3).getDateCellValue(), 
-				list.get(4).getStringCellValue(),list.get(5).getStringCellValue(), 
-				list.get(6).getStringCellValue());
+	private void crearUsuarios(List<XSSFCell> list){
+		Usuario user = null; 
+	    if(list.get(4).getNumericCellValue()==3) { 
+	      user = new Ciudadano(list.get(0).getStringCellValue(), list.get(2).getStringCellValue(), 
+	          list.get(3).getStringCellValue()); 
+	    } 
 		InsertR insert = new InsertR();
 		insert.save(user);
 		//getaF().saveData(user);
@@ -119,5 +139,7 @@ public class RList implements ReadList {
 	public ArrayList<List<XSSFCell>> getAllUsers(){
 		return allUsers;
 	}
+
+	
 
 }

@@ -16,7 +16,9 @@ import org.junit.Test;
 import com.lowagie.text.DocumentException;
 
 import executer.ActionSingleton;
-import model.User;
+import model.Ciudadano;
+import model.Usuario;
+import model.Usuario;
 import persistence.UserFinder;
 import persistence.util.Jpa;
 
@@ -25,9 +27,8 @@ public class DbTest {
 	@Test
 	public void usuarioYaExistenteDni() throws FileNotFoundException, DocumentException, IOException {
 		ActionSingleton aS = ActionSingleton.getInstance();
-		Date date = new Date(System.currentTimeMillis());
-		User user1 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654321P");
-		User user2 = new User("Paco", "Francisco", "franci@gmail.com", date, "C\\Uría", "Español", "87654321P");
+		Ciudadano user1 = new Ciudadano("Paco", "francisco@gmail.com", "87654321P");
+		Ciudadano user2 = new Ciudadano("Paco", "franci@gmail.com", "87654321P");
 
 		aS.getAF().saveData(user1);
 		aS.getAF().saveData(user2);
@@ -36,7 +37,7 @@ public class DbTest {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 
-		List<User> test = UserFinder.findByDNI("87654321P");
+		List<Usuario> test = UserFinder.findByDNI("87654321P");
 		assertEquals(test.get(0).getEmail(), "francisco@gmail.com");
 
 		trx.commit();
@@ -47,8 +48,8 @@ public class DbTest {
 	public void usuarioYaExistenteEmail() throws FileNotFoundException, DocumentException, IOException {
 		ActionSingleton aS = ActionSingleton.getInstance();
 		Date date = new Date(System.currentTimeMillis());
-		User user1 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654321P");
-		User user3 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654353Y");
+		Ciudadano user1 = new Ciudadano("Paco", "francisco@gmail.com", "87654321P");
+		Ciudadano user3 = new Ciudadano("Paco", "francisco@gmail.com", "87654353Y");
 
 		aS.getAF().saveData(user1);
 		aS.getAF().saveData(user3);
@@ -57,8 +58,8 @@ public class DbTest {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 
-		List<User> test = UserFinder.findByEmail("francisco@gmail.com");
-		assertEquals(test.get(0).getDNI(), "87654321P");
+		List<Usuario> test = UserFinder.findByEmail("francisco@gmail.com");
+		assertEquals(test.get(0).getCodigo(), "87654321P");
 
 		trx.commit();
 		mapper.close();
@@ -70,7 +71,7 @@ public class DbTest {
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
-		List<User> aBorrar = UserFinder.findByDNI("87654321P");
+		List<Usuario> aBorrar = UserFinder.findByDNI("87654321P");
 		Jpa.getManager().remove(aBorrar.get(0));
 		trx.commit();
 		mapper.close();

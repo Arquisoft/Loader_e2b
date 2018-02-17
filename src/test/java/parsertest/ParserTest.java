@@ -18,14 +18,15 @@ import org.junit.After;
 import org.junit.Test;
 
 import com.lowagie.text.DocumentException;
-import model.User;
+import model.Ciudadano;
+import model.Usuario;
 
 public class ParserTest {
 
 	@Test
 	public void testLoadExcelExito() throws FileNotFoundException, DocumentException {
 		RList ex = new RList();
-		ex.load("src/test/resources/test.xlsx");
+		ex.loadExcel("src/test/resources/test.xlsx");
 
 		assertEquals(ex.getAllUsers().size(), 3);
 
@@ -63,7 +64,7 @@ public class ParserTest {
 	@Test(expected = FileNotFoundException.class)
 	public void testLoadExcelFicheroNoEncontrado() throws FileNotFoundException, DocumentException {
 		RList ex = new RList();
-		ex.load("src/test/resources/fallo.xlsx");
+		ex.loadExcel("src/test/resources/fallo.xlsx");
 
 		assertEquals(ex.getAllUsers().size(), 3);
 
@@ -101,7 +102,7 @@ public class ParserTest {
 	@Test(expected = IOException.class)
 	public void testLoadExcelErrorExcel() throws IOException, DocumentException {
 		RList ex = new RList();
-		ex.load("src/test/resources/vacio.xlsx");
+		ex.loadExcel("src/test/resources/vacio.xlsx");
 
 		assertEquals(ex.getAllUsers().size(), 3);
 
@@ -139,11 +140,11 @@ public class ParserTest {
 	@Test
 	public void testReaderSingleton() throws DocumentException {
 		ReaderSingleton rS = ReaderSingleton.getInstance();
-		rS.loadFile("cadenaIncorrecta");
-		rS.loadFile("test.xlsx");
+		rS.loadFile("cadenaIncorrecta","cadenaIncorrecta");
+		rS.loadFile("test2.xlsx", "users.csv");
 		ReaderSingleton rS1 = ReaderSingleton.getInstance();
-		rS1.loadFile("cadenaIncorrecta");
-		rS1.loadFile("test.xlsx");
+		rS.loadFile("cadenaIncorrecta","cadenaIncorrecta");
+		rS.loadFile("test2.xlsx", "users.csv");
 		assertEquals(rS, rS1);
 	}
 
@@ -152,7 +153,7 @@ public class ParserTest {
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
-		List<User> aBorrar = UserFinder.findByDNI("09940449X");
+		List<Usuario> aBorrar = UserFinder.findByDNI("09940449X");
 		if (!aBorrar.isEmpty())
 			Jpa.getManager().remove(aBorrar.get(0));
 
