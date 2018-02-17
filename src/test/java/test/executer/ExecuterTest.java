@@ -1,4 +1,4 @@
-package executer;
+package test.executer;
 
 import static org.junit.Assert.*;
 
@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import com.lowagie.text.DocumentException;
 
+import executer.ActionSingleton;
 import model.User;
 import persistence.UserFinder;
 import persistence.util.Jpa;
