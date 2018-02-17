@@ -8,11 +8,12 @@ import com.lowagie.text.DocumentException;
 import dbupdate.Insert;
 import dbupdate.InsertP;
 import model.Ciudadano;
+import model.Usuario;
 
 public class ActionFacadeClass implements ActionFacade {
 
 	@Override
-	public void saveData(Ciudadano user) throws FileNotFoundException, DocumentException, IOException {
+	public void saveData(Usuario user) throws FileNotFoundException, DocumentException, IOException {
 		Insert insert = new InsertP();
 		insert.save(user);
 			

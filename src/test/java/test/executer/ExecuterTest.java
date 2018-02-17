@@ -14,7 +14,8 @@ import org.junit.Test;
 import com.lowagie.text.DocumentException;
 
 import executer.ActionSingleton;
-import model.User;
+import model.Ciudadano;
+import model.Usuario;
 import persistence.UserFinder;
 import persistence.util.Jpa;
 
@@ -28,17 +29,17 @@ public class ExecuterTest {
 		assertEquals(aS, aS2);
 		
 		Date date = new Date(System.currentTimeMillis());
-		User user = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654321P");
+		Usuario Usuario = new Ciudadano("Paco", "francisco@gmail.com", "87654321P");
 		
-		aS.getAF().saveData(user);
+		aS.getAF().saveData(Usuario);
 		
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		
-		User user2 = UserFinder.findByEmail("francisco@gmail.com").get(0);
+		Usuario Usuario2 = UserFinder.findByEmail("francisco@gmail.com").get(0);
 		
-		assertEquals(user, user2);
+		assertEquals(Usuario, Usuario2);
 		
 		trx.commit();
 		
