@@ -1,19 +1,19 @@
 package parser.cartas;
 
-import model.User;
+import model.Usuario;
 
 public final class LetterGenerator {
 	
-	public static void generateTxtLetter(User user) {
-		new TxtLetter().createLetter(user);
+	public static void generateTxtLetter(Usuario Usuario) {
+		new TxtLetter().createLetter(Usuario);
 	}
 	
-	public static void generateWordLetter(User user) {
-		new WordLetter().createLetter(user);
+	public static void generateWordLetter(Usuario Usuario) {
+		new WordLetter().createLetter(Usuario);
 	}
 	
-	public static void generatePdfLetter(User user) {
-		new PdfLetter().createLetter(user);
+	public static void generatePdfLetter(Usuario Usuario) {
+		new PdfLetter().createLetter(Usuario);
 	}
 	
 }

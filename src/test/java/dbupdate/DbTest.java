@@ -17,6 +17,8 @@ import com.lowagie.text.DocumentException;
 
 import executer.ActionSingleton;
 import model.Ciudadano;
+import model.Usuario;
+import model.Usuario;
 import persistence.UserFinder;
 import persistence.util.Jpa;
 
@@ -35,7 +37,7 @@ public class DbTest {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 
-		List<Ciudadano> test = UserFinder.findByDNI("87654321P");
+		List<Usuario> test = UserFinder.findByDNI("87654321P");
 		assertEquals(test.get(0).getEmail(), "francisco@gmail.com");
 
 		trx.commit();
@@ -56,7 +58,7 @@ public class DbTest {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 
-		List<Ciudadano> test = UserFinder.findByEmail("francisco@gmail.com");
+		List<Usuario> test = UserFinder.findByEmail("francisco@gmail.com");
 		assertEquals(test.get(0).getCodigo(), "87654321P");
 
 		trx.commit();
@@ -69,7 +71,7 @@ public class DbTest {
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
-		List<Ciudadano> aBorrar = UserFinder.findByDNI("87654321P");
+		List<Usuario> aBorrar = UserFinder.findByDNI("87654321P");
 		Jpa.getManager().remove(aBorrar.get(0));
 		trx.commit();
 		mapper.close();

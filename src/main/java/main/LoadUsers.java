@@ -1,5 +1,7 @@
 package main;
 
+import com.lowagie.text.DocumentException;
+
 import parser.ReaderSingleton;
 
 /**
@@ -10,12 +12,12 @@ import parser.ReaderSingleton;
  */
 public class LoadUsers {
 
-	public static void main(String... args)  {	
+	public static void main(String... args) throws DocumentException  {	
 		final LoadUsers runner = new LoadUsers();
 		runner.run(args);
 	}
 
-	private void run(String... args){
+	private void run(String... args) throws DocumentException{
 		if (args.length == 0 || args[0].equals("--help"))
 			showHelp();
 		else if (args[0].equals("info"))

@@ -11,15 +11,17 @@ import model.Usuario;
 public class TxtLetter extends Letter{
 	private Writer writer;
 
-	public void createLetter(User user){
+	public void createLetter(Usuario user){
 		try {
-			File letter = new File("cartas/txt/" + user.getDNI() + ".txt");
+			File letter = new File("cartas/txt/" + user.getCodigo() + ".txt");
 			writer = new FileWriter(letter);
-			writer.write("Usuario: " + user.getUsername() + "\n" + "Password: "
-					+ user.getPassword());
-			writer.close();
+			if(user instanceof Ciudadano) {
+				writer.write("Usuario: " + ((Ciudadano)user).getUsername() + "\n" + "Password: "
+						+ ((Ciudadano)user).getPassword());
+				writer.close();
+			}
 			
-			System.out.println("Se ha generado la carta " + user.getDNI() + ".txt correctamente.");
+			System.out.println("Se ha generado la carta " + user.getCodigo() + ".txt correctamente.");
 		}
 		catch(IOException e) {
 			e.printStackTrace();

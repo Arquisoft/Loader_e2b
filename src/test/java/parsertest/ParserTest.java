@@ -19,6 +19,7 @@ import org.junit.Test;
 
 import com.lowagie.text.DocumentException;
 import model.Ciudadano;
+import model.Usuario;
 
 public class ParserTest {
 
@@ -152,7 +153,7 @@ public class ParserTest {
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
-		List<Ciudadano> aBorrar = UserFinder.findByDNI("09940449X");
+		List<Usuario> aBorrar = UserFinder.findByDNI("09940449X");
 		if (!aBorrar.isEmpty())
 			Jpa.getManager().remove(aBorrar.get(0));
 

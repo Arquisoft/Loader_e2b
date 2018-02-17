@@ -1,7 +1,7 @@
 package parser.cartas;
 
-import model.User;
+import model.Usuario;
 
 public abstract class Letter {
-		public abstract void createLetter(User user);
+		public abstract void createLetter(Usuario Usuario);
 }

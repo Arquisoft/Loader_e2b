@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 
-import model.User;
+import model.Usuario;
 import parser.cartas.LetterGenerator;
 import persistence.UserFinder;
 import persistence.util.Jpa;
@@ -16,7 +16,7 @@ import reportwriter.ReportWriter;
 public class InsertP implements Insert {
 
 	@Override
-	public User save(User user)  {
+	public Usuario save(Usuario user)  {
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
@@ -50,12 +50,12 @@ public class InsertP implements Insert {
 	}
 
 	@Override
-	public List<Ciudadano> findByDNI(String dni) {
+	public List<Usuario> findByDNI(String dni) {
 		return UserFinder.findByDNI(dni);
 	}
 
 	@Override
-	public List<Ciudadano> findByEmail(String email) {
+	public List<Usuario> findByEmail(String email) {
 		return UserFinder.findByEmail(email);
 	}
 }
