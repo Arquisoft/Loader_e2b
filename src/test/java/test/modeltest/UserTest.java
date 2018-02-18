@@ -3,94 +3,82 @@ package test.modeltest;
 import static org.junit.Assert.*;
 
 import model.*;
+import model.types.Location;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class UserTest {
 
-	Ciudadano user1 = null;
-	Ciudadano user2 = null;
-	Ciudadano user3 = null;
-	Ciudadano user4 = null;
-	Ciudadano user5 = null;
-	Ciudadano user6 = null;
+	Usuario user1 = null;
+	Usuario user2 = null;
+	Usuario user3 = null;
+	Usuario user4 = null;
+	Usuario user5 = null;
+	Usuario user6 = null;
 
 	@Before
 	public void setUp() {
-		// CreateUser cu = new CreateUser(); //se crea un tipo de ususario u otro según el csv (ParserCSV.class)
-		// user1 = cu.newUser("Juan Torres Pardo", null, "juantp@example.com", "90500084Y");
-		// user2 = cu.newUser("Sensor Temperatura", "43º 22' N, 5º 50' O", "organizacion1@example.com", "78964566P");
-		// user3 = cu.newUser("Luis López Fernandez", null, "luisgf@example.com", "19160962F");
-		// user4 = cu.newUser("Sensor humedad", "22º 17' N, 8º 75' S", "organizacion2@example.com", "12348952O");
-		// user5 = cu.newUser("Ana García Pérez", null, "anagp@example.com", "09940449X");
-		// user6 = cu.newUser("Bomberos de Asturias", null, "bomberosast@example.com", "23548912Z");
+		user1 = new Ciudadano("Juan Torres Pardo", "juantp@example.com", "90500084Y");
+		user2 = new Sensor("Sensor Temperatura", new Location("43º 22' N", "5º 50' O"), "organizacion1@example.com", "78964566P");
+		user3 = new Ciudadano("Luis López Fernandez", "luisgf@example.com", "19160962F");
+		user4 = new Sensor("Sensor humedad", new Location("22º 17' N", "8º 75' S"), "organizacion2@example.com", "12348952O");
+		user5 = new Ciudadano("Ana García Pérez", "anagp@example.com", "09940449X");
+		user6 = new Entidad("Bomberos de Asturias", "bomberosast@example.com", "23548912Z");
 	}
 
 	@Test
 	public void testAll() {
 		assertEquals("Juan Torres Pardo", user1.getNombre());
-		//assertNull(user1.getLocalizacion());
 		assertEquals("juantp@example.com", user1.getEmail());
-		//assertEquals("90500084Y", user1.getIdentificador());
-		//assertEquals("1", user1.getTipo());
-
+		assertEquals("90500084Y", user1.getCodigo());
+		
 		assertEquals("Sensor Temperatura", user2.getNombre());
-		//assertEquals("43º 22' N, 5º 50' O", user2.getLocalizacion());
 		assertEquals("organizacion1@example.com", user2.getEmail());
-		//assertEquals("78964566P", user2.getIdentificador());
-		//assertEquals("3", user2.getTipo());
+		assertEquals("78964566P", user2.getCodigo());
 
 		assertEquals("Luis López Fernandez", user3.getNombre());
-		//assertNull(user3.getLocalizacion());
 		assertEquals("luisgf@example.com", user3.getEmail());
-		//assertEquals("19160962F", user3.getIdentificador());
-		//assertEquals("1", user3.getTipo());
+		assertEquals("19160962F", user3.getCodigo());
 
 		assertEquals("Sensor humedad", user4.getNombre());
-		//assertEquals("22º 17' N, 8º 75' S", user4.getLocalizacion());
 		assertEquals("organizacion2@example.com", user4.getEmail());
-		//assertEquals("12348952O", user4.getIdentificador());
-		//assertEquals("3", user4.getTipo());
-
+		assertEquals("12348952O", user4.getCodigo());
+	
 		assertEquals("Ana García Pérez", user5.getNombre());
-		//assertNull(user5.getLocalizacion());
 		assertEquals("anagp@example.com", user5.getEmail());
-		//assertEquals("09940449X", user5.getIdentificador());
-		//assertEquals("1", user5.getTipo());
+		assertEquals("09940449X", user5.getCodigo());
 
 		assertEquals("Bomberos de Asturias", user6.getNombre());
-		//assertNull(user6.getLocalizacion());
 		assertEquals("bomberosast@example.com", user6.getEmail());
-		//assertEquals("23548912Z", user6.getIdentificador());
-		//assertEquals("2", user6.getTipo());
+		assertEquals("23548912Z", user6.getCodigo());
 	}
 
 	@Test
 	public void testType() {
-		//assertTrue(user1 instanceof Person);
-		//assertFalse(user1 instanceof Sensor);
-		//assertFalse(user1 instanceof Entity);
+		assertTrue(user1 instanceof Ciudadano);
+		assertFalse(user1 instanceof Sensor);
+		assertFalse(user1 instanceof Entidad);
 
-		//assertTrue(user2 instanceof Sensor);
-		//assertFalse(user2 instanceof Person);
-		//assertFalse(user2 instanceof Entity);
+		assertTrue(user2 instanceof Sensor);
+		assertFalse(user2 instanceof Ciudadano);
+		assertFalse(user2 instanceof Entidad);
 
-		//assertTrue(user3 instanceof Person);
-		//assertFalse(user3 instanceof Sensor);
-		//assertFalse(user3 instanceof Entity);
+		assertTrue(user3 instanceof Ciudadano);
+		assertFalse(user3 instanceof Sensor);
+		assertFalse(user3 instanceof Entidad);
 
-		//assertTrue(user4 instanceof Sensor);
-		//assertFalse(user4 instanceof Person);
-		//assertFalse(user4 instanceof Entity);
+		assertTrue(user4 instanceof Sensor);
+		assertFalse(user4 instanceof Ciudadano);
+		assertFalse(user4 instanceof Entidad);
 
-		//assertTrue(user5 instanceof Person);
-		//assertFalse(user5 instanceof Sensor);
-		//assertFalse(user5 instanceof Entity);
+		assertTrue(user5 instanceof Ciudadano);
+		assertFalse(user5 instanceof Sensor);
+		assertFalse(user5 instanceof Entidad);
 
-		//assertTrue(user6 instanceof Entity);
-		//assertFalse(user6 instanceof Sensor);
-		//assertFalse(user6 instanceof Person);
+		assertTrue(user6 instanceof Entidad);
+		assertFalse(user6 instanceof Sensor);
+		assertFalse(user6 instanceof Ciudadano);
 	}
 
 }

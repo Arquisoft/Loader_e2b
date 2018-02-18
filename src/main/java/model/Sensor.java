@@ -18,8 +18,18 @@ public class Sensor extends Usuario implements Serializable {
 
     public Sensor(String name, Location location, String email, String code){
         setNombre(name);
-        this.location = location;
+        setLocation(location);
         setEmail(email);
         setCodigo(code);
     }
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+    
+    
 }

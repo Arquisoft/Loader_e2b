@@ -126,6 +126,24 @@ public class RList implements ReadList {
 	}
 
 	private void crearUsuarios(List<XSSFCell> list) {
+		/*
+		 * Usuario user = null; 
+		loadCSV("users.csv");
+		for (Entry<String, String> entry : datosCSV.entrySet()) {
+			Double v = list.get(3).getNumericCellValue();
+			if(entry.getKey().equals(String.valueOf(v).substring(0, 1))) { //que alguien compruebe esto por favor
+				String valor = entry.getValue();
+				if(valor.equals("Person")) {
+					user = new Ciudadano(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(), 
+				  	          list.get(2).getStringCellValue()); 
+				} else if(valor.equals("Entity")) {
+					//TODO
+				} else if(valor.equals("Sensor")) {
+					//TODO
+				}
+			}
+		}*/
+		
 		Usuario user = null;
 		InsertR insert = new InsertR();
 		// Si no tiene la fila de coordenadas
