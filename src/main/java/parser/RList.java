@@ -1,4 +1,3 @@
-
 package parser;
 
 import java.io.FileInputStream;
@@ -22,8 +21,8 @@ import com.lowagie.text.DocumentException;
 
 import executer.ActionFacade;
 import executer.ActionFacadeClass;
-import model.Ciudadano;
-import model.Usuario;
+import model.*;
+import model.types.Location;
 import parser.agentes.ParserCSV;
 import reportwriter.ReportWriter;
 
@@ -154,10 +153,26 @@ public class RList implements ReadList {
 				user = new Ciudadano(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
 						list.get(2).getStringCellValue());
 			}
+			else {
+				user = new Entidad(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
+						list.get(2).getStringCellValue());
+			}
+		}
+		else {
+			user = getSensorData(insert, list, user);
 		}
 		if (user != null)
 			insert.save(user);
 		// getaF().saveData(user);
+	}
+
+	private Usuario getSensorData(InsertR insert, List<XSSFCell> list, Usuario user) {
+		String[] location = list.get(1).getStringCellValue().split(",");
+			user = new Sensor(list.get(0).getStringCellValue()
+			, new Location(location[0], location[1])
+			, list.get(2).getStringCellValue()
+			, list.get(3).getStringCellValue());
+		return user;
 	}
 
 	public ArrayList<List<XSSFCell>> getAllUsers() {

@@ -8,8 +8,7 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 
-import model.Ciudadano;
-import model.Usuario;
+import model.*;
 
 public class PdfLetter extends Letter{
 	private Document document;
@@ -25,6 +24,14 @@ public class PdfLetter extends Letter{
 		if(Usuario instanceof Ciudadano) {
 			document.add(new Paragraph("Usuario: " + ((Ciudadano)Usuario).getUsername()
 			+ "\n Password: " + ((Ciudadano)Usuario).getPassword()));
+		}
+		if(Usuario instanceof Sensor) {
+			document.add(new Paragraph("Usuario: " + ((Sensor)Usuario).getNombre()
+			+ "\n Código: " + ((Sensor)Usuario).getCodigo()));
+		}
+		if(Usuario instanceof Entidad) {
+			document.add(new Paragraph("Usuario: " + ((Entidad)Usuario).getNombre()
+			+ "\n Código: " + ((Entidad)Usuario).getCodigo()));
 		}
 				
 		
