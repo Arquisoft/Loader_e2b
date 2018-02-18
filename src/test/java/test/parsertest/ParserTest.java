@@ -1,5 +1,7 @@
 package test.parsertest;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -7,19 +9,17 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import parser.*;
-import persistence.UserFinder;
-import persistence.util.Jpa;
-
-import static org.junit.Assert.*;
-
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.junit.After;
 import org.junit.Test;
 
 import com.lowagie.text.DocumentException;
-import model.Ciudadano;
+
 import model.Usuario;
+import parser.RList;
+import parser.ReaderSingleton;
+import persistence.UserFinder;
+import persistence.util.Jpa;
 
 public class ParserTest {
 

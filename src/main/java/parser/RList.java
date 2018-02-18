@@ -10,9 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
-import reportwriter.ReportWriter;
-import test.executer.*;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -22,11 +19,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.lowagie.text.DocumentException;
 
-import executer.*;
+import executer.ActionFacade;
+import executer.ActionFacadeClass;
 import model.Ciudadano;
 import model.Usuario;
 import parser.agentes.ParserCSV;
-
+import reportwriter.ReportWriter;
 
 public class RList implements ReadList {
 	private ActionFacade aF = new ActionFacadeClass();
@@ -34,21 +32,22 @@ public class RList implements ReadList {
 	private Map<String, String> datosCSV;
 
 	/**
-	 * Lee el fichero excel de la ruta pasada por parametro Si el fichero no
-	 * esta en formato excel, detiene la lectura y escribe en el log la causa
-	 * del error. Va leyendo linea por linea(hay un usuario en cada linea): Para
-	 * cada linea crea un objeto User y se lo pasa al metodo cargarDatos del
-	 * AtionFacade. Si existe algun fallo de FORMATO se ignora esa linea y se
-	 * pasa a la siguiente, ademas de escribir dicho error en el log.
+	 * Lee el fichero excel de la ruta pasada por parametro Si el fichero no esta en
+	 * formato excel, detiene la lectura y escribe en el log la causa del error. Va
+	 * leyendo linea por linea(hay un usuario en cada linea): Para cada linea crea
+	 * un objeto User y se lo pasa al metodo cargarDatos del AtionFacade. Si existe
+	 * algun fallo de FORMATO se ignora esa linea y se pasa a la siguiente, ademas
+	 * de escribir dicho error en el log.
 	 * 
 	 * @param path
 	 *            ruta del fichero
 	 * 
-	 *  @exception FileNotFoundException No se encuentra el fichero excel
-	 * @throws DocumentException 
+	 * @exception FileNotFoundException
+	 *                No se encuentra el fichero excel
+	 * @throws DocumentException
 	 */
 	@Override
-	public void loadExcel(String path) throws FileNotFoundException{
+	public void loadExcel(String path) throws FileNotFoundException {
 		InputStream excelFile = null;
 		XSSFWorkbook excel = null;
 		allUsers = new ArrayList<List<XSSFCell>>();
@@ -78,21 +77,21 @@ public class RList implements ReadList {
 				}
 				i++;
 			}
-		} catch(FileNotFoundException ex){
+		} catch (FileNotFoundException ex) {
 			throw ex;
-		}
-		catch (IOException ioe) {
+		} catch (IOException ioe) {
 			System.err.println("Problema con la lectura del excel en la linea " + i);
-			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "Problema con la lectura del excel en la linea " + i);
-		}finally {
-			if (excelFile != null){
+			ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
+					"Problema con la lectura del excel en la linea " + i);
+		} finally {
+			if (excelFile != null) {
 				try {
 					excelFile.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
-			
+
 			if (excel != null) {
 				try {
 					excel.close();
@@ -102,20 +101,20 @@ public class RList implements ReadList {
 			}
 		}
 	}
-	
+
 	@Override
-	public void loadCSV(String path) throws DocumentException, FileNotFoundException{
+	public void loadCSV(String path) throws DocumentException, FileNotFoundException {
 		ParserCSV parser = new ParserCSV();
-		try{
+		try {
 			datosCSV = parser.read(path);
-		}catch(IOException e) {
+		} catch (IOException e) {
 			System.err.println("Problema con la lectura del csv");
 			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "Problema con la lectura del csv");
 		}
-		if(datosCSV == null) {
+		if (datosCSV == null) {
 			throw new FileNotFoundException();
 		}
-			
+
 	}
 
 	public ActionFacade getaF() {
@@ -126,26 +125,24 @@ public class RList implements ReadList {
 		this.aF = aF;
 	}
 
-	private void crearUsuarios(List<XSSFCell> list){
-		Usuario user = null; 
+	private void crearUsuarios(List<XSSFCell> list) {
+		Usuario user = null;
 		InsertR insert = new InsertR();
 		// Si no tiene la fila de coordenadas
-		if(list.size()==4) {
-	    	// Si es de tipo 3 - Ciudadano
-	    	if(list.get(3).getNumericCellValue()==1) { 
-	  	      user = new Ciudadano(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(), 
-	  	          list.get(2).getStringCellValue()); 
-	  	    } 
-	    } 
-		if(user!=null)
+		if (list.size() == 4) {
+			// Si es de tipo 3 - Ciudadano
+			if (list.get(3).getNumericCellValue() == 1) {
+				user = new Ciudadano(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
+						list.get(2).getStringCellValue());
+			}
+		}
+		if (user != null)
 			insert.save(user);
-		//getaF().saveData(user);
-	}
-	
-	public ArrayList<List<XSSFCell>> getAllUsers(){
-		return allUsers;
+		// getaF().saveData(user);
 	}
 
-	
+	public ArrayList<List<XSSFCell>> getAllUsers() {
+		return allUsers;
+	}
 
 }
