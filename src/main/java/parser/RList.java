@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
-
-import reportwriter.ReportWriter;
-import test.executer.*;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -22,10 +20,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.lowagie.text.DocumentException;
 
-import executer.*;
+import executer.ActionFacade;
+import executer.ActionFacadeClass;
 import model.Ciudadano;
 import model.Usuario;
 import parser.agentes.ParserCSV;
+import reportwriter.ReportWriter;
 
 
 public class RList implements ReadList {
@@ -48,7 +48,7 @@ public class RList implements ReadList {
 	 * @throws DocumentException 
 	 */
 	@Override
-	public void loadExcel(String path) throws FileNotFoundException{
+	public void loadExcel(String path) throws FileNotFoundException, DocumentException{
 		InputStream excelFile = null;
 		XSSFWorkbook excel = null;
 		allUsers = new ArrayList<List<XSSFCell>>();
@@ -126,16 +126,32 @@ public class RList implements ReadList {
 		this.aF = aF;
 	}
 
-	private void crearUsuarios(List<XSSFCell> list){
+	private void crearUsuarios(List<XSSFCell> list) throws IOException, DocumentException{
 		Usuario user = null; 
+		loadCSV("users.csv");
+		for (Entry<String, String> entry : datosCSV.entrySet()) {
+			Double v = list.get(3).getNumericCellValue();
+			if(entry.getKey().equals(String.valueOf(v).substring(0, 1))) { //que alguien compruebe esto por favor
+				String valor = entry.getValue();
+				if(valor.equals("Person")) {
+					user = new Ciudadano(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(), 
+				  	          list.get(2).getStringCellValue()); 
+				} else if(valor.equals("Entity")) {
+					//TODO
+				} else if(valor.equals("Sensor")) {
+					//TODO
+				}
+			}
+		}
+		/*
+		
 		// Si no tiene la fila de coordenadas
 	    if(list.size()==4) {
 	    	// Si es de tipo 3 - Ciudadano
-	    	if(list.get(3).getNumericCellValue()==3) { 
-	  	      user = new Ciudadano(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(), 
-	  	          list.get(2).getStringCellValue()); 
+	    	if(list.get(3).getNumericCellValue()==1) { 
+	  	      
 	  	    } 
-	    } 
+	    } */
 		InsertR insert = new InsertR();
 		insert.save(user);
 		//getaF().saveData(user);
@@ -144,7 +160,4 @@ public class RList implements ReadList {
 	public ArrayList<List<XSSFCell>> getAllUsers(){
 		return allUsers;
 	}
-
-	
-
 }

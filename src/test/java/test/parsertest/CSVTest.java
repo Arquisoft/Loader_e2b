@@ -23,7 +23,6 @@ public class CSVTest {
 
 	@Test
 	public void testOK() throws IOException {
-
 		Map<String, String> datos = parser.read("users.csv");
 
 		StringBuilder sb = new StringBuilder();
