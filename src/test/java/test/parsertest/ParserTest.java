@@ -104,7 +104,7 @@ public class ParserTest {
 		RList ex = new RList();
 		ex.loadExcel("src/test/resources/vaciop.xlsx");
 
-		assertEquals(ex.getAllUsers().size(), 3);
+		assertEquals(ex.getAllUsers().size(), 0);
 
 		List<XSSFCell> list1 = ex.getAllUsers().get(0);
 		List<XSSFCell> list2 = ex.getAllUsers().get(1);
