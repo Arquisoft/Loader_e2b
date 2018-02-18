@@ -28,37 +28,37 @@ public class ParserTest {
 		RList ex = new RList();
 		ex.loadExcel("src/test/resources/test.xlsx");
 
-		assertEquals(ex.getAllUsers().size(), 3);
+		assertEquals(ex.getAllUsers().size(), 6);
 
-		List<XSSFCell> list1 = ex.getAllUsers().get(0);
-		List<XSSFCell> list2 = ex.getAllUsers().get(1);
-		List<XSSFCell> list3 = ex.getAllUsers().get(2);
+		List<XSSFCell> list1 = ex.getAllUsers().get(3);
+		List<XSSFCell> list2 = ex.getAllUsers().get(4);
+		List<XSSFCell> list3 = ex.getAllUsers().get(5);
 		StringBuilder st = new StringBuilder();
 
 		for (int i = 0; i < list1.size(); i++) {
-			if (i != 3)
+			if ((i != 3 && list1.size()<5) || (i!=4 && list1.size()==5))
 				st.append(list1.get(i).toString() + " ");
 		}
 
-		assertEquals(st.toString(), "Juan Torres Pardo juan@example.com C/ Federico García Lorca 2 Español 90500084Y ");
+		assertEquals(st.toString(), "Sensor humedad 22º 17' N, 8º 75' S organizacion2@example.com 12348952O ");
 
 		st = new StringBuilder();
 
 		for (int i = 0; i < list2.size(); i++) {
-			if (i != 3)
+			if ((i != 3 && list2.size()<5) || (i!=4 && list2.size()==5))
 				st.append(list2.get(i).toString() + " ");
 		}
 
-		assertEquals(st.toString(), "Luis López Fernando luis@example.com C/ Real Oviedo 2 Español 19160962F ");
+		assertEquals(st.toString(), "Ana García Pérez anagp@example.com 09940449X ");
 
 		st = new StringBuilder();
 
 		for (int i = 0; i < list3.size(); i++) {
-			if (i != 3)
+			if ((i != 3 && list3.size()<5) || (i!=4 && list3.size()==5))
 				st.append(list3.get(i).toString() + " ");
 		}
 
-		assertEquals(st.toString(), "Ana Torres Pardo ana@example.com Av. De la Constitución 8 Español 09940449X ");
+		assertEquals(st.toString(), "Bomberos de Asturias bomberosast@example.com 23548912Z ");
 	}
 
 	@Test(expected = FileNotFoundException.class)
