@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -47,7 +48,7 @@ public class RList implements ReadList {
 	 * @throws DocumentException
 	 */
 	@Override
-	public void loadExcel(String path) throws FileNotFoundException {
+	public void loadExcel(String path) throws FileNotFoundException, DocumentException {
 		InputStream excelFile = null;
 		XSSFWorkbook excel = null;
 		allUsers = new ArrayList<List<XSSFCell>>();
@@ -125,45 +126,33 @@ public class RList implements ReadList {
 		this.aF = aF;
 	}
 
-	private void crearUsuarios(List<XSSFCell> list) {
-		/*
-		 * Usuario user = null; 
+	private void crearUsuarios(List<XSSFCell> list) throws FileNotFoundException, DocumentException {		
+		Usuario user = null; 
+		InsertR insert = new InsertR();
 		loadCSV("users.csv");
 		for (Entry<String, String> entry : datosCSV.entrySet()) {
-			Double v = list.get(3).getNumericCellValue();
-			if(entry.getKey().equals(String.valueOf(v).substring(0, 1))) { //que alguien compruebe esto por favor
+			String type = String.valueOf(getType(list));
+			if(entry.getKey().equals(type)) {
 				String valor = entry.getValue();
 				if(valor.equals("Person")) {
 					user = new Ciudadano(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(), 
 				  	          list.get(2).getStringCellValue()); 
 				} else if(valor.equals("Entity")) {
-					//TODO
+					user = new Entidad(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
+						list.get(2).getStringCellValue());
 				} else if(valor.equals("Sensor")) {
-					//TODO
+					user = getSensorData(insert, list, user);
 				}
 			}
-		}*/
-		
-		Usuario user = null;
-		InsertR insert = new InsertR();
-		// Si no tiene la fila de coordenadas
-		if (list.size() == 4) {
-			// Si es de tipo 3 - Ciudadano
-			if (list.get(3).getNumericCellValue() == 1) {
-				user = new Ciudadano(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
-						list.get(2).getStringCellValue());
-			}
-			else {
-				user = new Entidad(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
-						list.get(2).getStringCellValue());
-			}
-		}
-		else {
-			user = getSensorData(insert, list, user);
-		}
-		if (user != null)
+			if (user != null)
 			insert.save(user);
 		// getaF().saveData(user);
+		}
+	}
+
+	private int getType(List<XSSFCell> list) {
+		if (list.size() == 4) return new Double(list.get(3).getNumericCellValue()).intValue();
+		return new Double(list.get(4).getNumericCellValue()).intValue();
 	}
 
 	private Usuario getSensorData(InsertR insert, List<XSSFCell> list, Usuario user) {

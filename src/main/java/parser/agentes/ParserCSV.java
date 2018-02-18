@@ -19,7 +19,10 @@ public class ParserCSV {
 		List<String[]> datos = reader.readAll();
 
 		for (String[] linea : datos) {
-			map.put(linea[0], linea[1]);
+			char[] aux = linea[0].toCharArray();
+			String code = linea[0].trim();
+			if (aux.length == 2) code = String.valueOf(aux[1]);
+			map.put(code, linea[1]);
 		}
 
 		reader.close();
