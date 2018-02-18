@@ -1,2 +1,6 @@
 Usuario: juantp@example.com
+<<<<<<< HEAD
 Password: SGBKCXMBR855
+=======
+Password: UOQESWPBA124
+>>>>>>> 2a6fb5efcff0a0c545db9d4329ab39e50bdf6cf4

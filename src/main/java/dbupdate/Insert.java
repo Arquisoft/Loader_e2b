@@ -1,9 +1,6 @@
 package dbupdate;
 
-import java.io.*;
 import java.util.List;
-
-import com.lowagie.text.DocumentException;
 
 import model.Usuario;
 

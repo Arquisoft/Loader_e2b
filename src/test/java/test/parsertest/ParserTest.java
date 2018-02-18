@@ -26,7 +26,6 @@ public class ParserTest {
 	@Test
 	public void testLoadExcelExito() throws FileNotFoundException, DocumentException {
 		RList ex = new RList();
-		//System.getProperty("test.xlsx");
 		ex.loadExcel("src/test/resources/test.xlsx");
 
 		assertEquals(ex.getAllUsers().size(), 3);
@@ -171,3 +170,4 @@ public class ParserTest {
 
 	}
 }
+

@@ -1,11 +1,11 @@
 package test.dbupdate;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -17,7 +17,6 @@ import com.lowagie.text.DocumentException;
 
 import executer.ActionSingleton;
 import model.Ciudadano;
-import model.Usuario;
 import model.Usuario;
 import persistence.UserFinder;
 import persistence.util.Jpa;
