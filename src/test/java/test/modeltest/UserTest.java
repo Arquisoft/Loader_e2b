@@ -10,12 +10,12 @@ import org.junit.Test;
 
 public class UserTest {
 
-	Usuario user1 = null;
-	Usuario user2 = null;
-	Usuario user3 = null;
-	Usuario user4 = null;
-	Usuario user5 = null;
-	Usuario user6 = null;
+	private Usuario user1 = null;
+	private Usuario user2 = null;
+	private Usuario user3 = null;
+	private Usuario user4 = null;
+	private Usuario user5 = null;
+	private Usuario user6 = null;
 
 	@Before
 	public void setUp() {

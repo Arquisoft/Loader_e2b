@@ -11,9 +11,9 @@ import com.lowagie.text.pdf.PdfWriter;
 import model.*;
 
 public class PdfLetter extends Letter{
-	private Document document;
+	
 	public  void createLetter(Usuario Usuario){
-		document = null;
+		Document document = null;
 		FileOutputStream letter = null;
 		try {
 		letter = new FileOutputStream(

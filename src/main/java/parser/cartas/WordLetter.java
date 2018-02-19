@@ -11,34 +11,31 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
-public class WordLetter extends Letter{
-	private FileOutputStream carta;
-	
-	public void createLetter(Usuario user){
+public class WordLetter extends Letter {
+
+	public void createLetter(Usuario user) {
 		XWPFDocument documento = new XWPFDocument();
 		File folder = new File("carta/word");
 		folder.mkdir();
 		try {
-			carta = new FileOutputStream(
-					"cartas/word/" + user.getCodigo() + ".docx");
+			FileOutputStream carta = new FileOutputStream("cartas/word/" + user.getCodigo() + ".docx");
 			XWPFParagraph paragraph = documento.createParagraph();
 			XWPFRun run = paragraph.createRun();
-			if(user instanceof Ciudadano) {
-				run.setText("Usuario: " + ((Ciudadano)user).getUsername());
+			if (user instanceof Ciudadano) {
+				run.setText("Usuario: " + ((Ciudadano) user).getUsername());
 				run.addBreak();
-				run.setText("Password: " + ((Ciudadano)user).getPassword());
+				run.setText("Password: " + ((Ciudadano) user).getPassword());
 			}
 			documento.write(carta);
-			
+
 			documento.close();
-			
+
 			carta.close();
-			
+
 			System.out.println("Se ha generado la carta " + user.getCodigo() + ".docx correctamente.");
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 }

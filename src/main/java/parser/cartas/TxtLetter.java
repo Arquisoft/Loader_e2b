@@ -9,12 +9,12 @@ import model.Ciudadano;
 import model.Usuario;
 
 public class TxtLetter extends Letter{
-	private Writer writer;
+	
 
 	public void createLetter(Usuario user){
 		try {
 			File letter = new File("cartas/txt/" + user.getCodigo() + ".txt");
-			writer = new FileWriter(letter);
+			Writer writer = new FileWriter(letter);
 			if(user instanceof Ciudadano) {
 				writer.write("Usuario: " + ((Ciudadano)user).getUsername() + "\n" + "Password: "
 						+ ((Ciudadano)user).getPassword());

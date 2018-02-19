@@ -134,14 +134,14 @@ public class RList implements ReadList {
 			String type = String.valueOf(getType(list));
 			if(entry.getKey().equals(type)) {
 				String valor = entry.getValue();
-				if(valor.equals("Person")) {
+				if("Person".equals(valor)) {
 					user = new Ciudadano(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(), 
 				  	          list.get(2).getStringCellValue()); 
-				} else if(valor.equals("Entity")) {
+				} else if("Entity".equals(valor)) {
 					user = new Entidad(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
 						list.get(2).getStringCellValue());
-				} else if(valor.equals("Sensor")) {
-					user = getSensorData(insert, list);
+				} else if("Sensor".equals(valor)) {
+					user = getSensorData(list);
 				}
 			}
 			if (user != null)
@@ -155,7 +155,7 @@ public class RList implements ReadList {
 		return new Double(list.get(4).getNumericCellValue()).intValue();
 	}
 
-	private Usuario getSensorData(InsertR insert, List<XSSFCell> list) {
+	private Usuario getSensorData(List<XSSFCell> list) {
 		String[] location = list.get(1).getStringCellValue().split(",");
 		return new Sensor(list.get(0).getStringCellValue()
 			, new Location(location[0], location[1])
