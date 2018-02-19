@@ -7,7 +7,7 @@
 Loader e2b module
 
 > mvn package<br>
-> java -jar .\target\Loader2b-0.0.1-jar-with-dependencies.jar load[test.xlsx]
+> java -jar .\target\Loader2b-0.0.1-jar-with-dependencies.jar load [users.csv] [test.xlsx]
 
 # Authors 2017
 
