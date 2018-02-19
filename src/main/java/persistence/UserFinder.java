@@ -1,7 +1,6 @@
 package persistence;
 
 import java.util.List;
-import model.Ciudadano;
 import model.Usuario;
 import persistence.util.Jpa;
 

@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import com.lowagie.text.DocumentException;
 
-import model.Ciudadano;
 import model.Usuario;
 
 public interface ActionFacade {

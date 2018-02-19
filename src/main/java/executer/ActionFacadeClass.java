@@ -7,7 +7,6 @@ import com.lowagie.text.DocumentException;
 
 import dbupdate.Insert;
 import dbupdate.InsertP;
-import model.Ciudadano;
 import model.Usuario;
 
 public class ActionFacadeClass implements ActionFacade {

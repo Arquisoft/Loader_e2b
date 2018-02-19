@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Date;
 
 import org.junit.Test;
 
@@ -19,7 +18,6 @@ public class LetterTest {
 	@Test
 	public void creadasCorrectamente() throws FileNotFoundException, DocumentException, IOException {
 		Letter letter = new PdfLetter();
-		Date date = new Date(System.currentTimeMillis());
 		Ciudadano user1 = new Ciudadano("Paco", "francisco@gmail.com", "87654321P");
 		letter.createLetter(user1);
 

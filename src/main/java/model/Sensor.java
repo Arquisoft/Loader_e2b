@@ -22,4 +22,8 @@ public class Sensor extends Usuario implements Serializable {
         setEmail(email);
         setCodigo(code);
     }
+
+    public Location getLocation() {
+        return location;
+    }
 }

@@ -1,7 +1,6 @@
 package parser.cartas;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -11,8 +10,6 @@ import model.Usuario;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
-
-import com.lowagie.text.DocumentException;
 
 public class WordLetter extends Letter{
 	private FileOutputStream carta;

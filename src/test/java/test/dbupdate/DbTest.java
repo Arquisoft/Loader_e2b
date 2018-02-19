@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -46,7 +45,6 @@ public class DbTest {
 	@Test
 	public void usuarioYaExistenteEmail() throws FileNotFoundException, DocumentException, IOException {
 		ActionSingleton aS = ActionSingleton.getInstance();
-		Date date = new Date(System.currentTimeMillis());
 		Ciudadano user1 = new Ciudadano("Paco", "francisco@gmail.com", "87654321P");
 		Ciudadano user3 = new Ciudadano("Paco", "francisco@gmail.com", "87654353Y");
 

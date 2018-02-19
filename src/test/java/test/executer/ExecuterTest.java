@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -28,7 +27,6 @@ public class ExecuterTest {
 		
 		assertEquals(aS, aS2);
 		
-		Date date = new Date(System.currentTimeMillis());
 		Usuario Usuario = new Ciudadano("Paco", "francisco@gmail.com", "87654321P");
 		
 		aS.getAF().saveData(Usuario);
