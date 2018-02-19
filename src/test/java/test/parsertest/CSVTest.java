@@ -14,7 +14,7 @@ import parser.agentes.ParserCSV;
 
 public class CSVTest {
 
-	ParserCSV parser = null;
+	ParserCSV parser;
 
 	@Before
 	public void setUp() {
