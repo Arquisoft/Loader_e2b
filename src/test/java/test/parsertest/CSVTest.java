@@ -31,7 +31,7 @@ public class CSVTest {
 			sb.append("[" + entry.getKey() + "," + entry.getValue() + "]");
 		}
 
-		assertEquals(sb.toString(), "[2,Entity][3,Sensor][﻿1,Person]");
+		assertEquals(sb.toString(), "[﻿1,Person][2,Entity][3,Sensor]");
 	}
 
 	@Test(expected = FileNotFoundException.class)
@@ -45,7 +45,7 @@ public class CSVTest {
 			sb.append("[" + entry.getKey() + "," + entry.getValue() + "]");
 		}
 
-		assertEquals(sb.toString(), "[2,Entity][3,Sensor][﻿1,Person]");
+		assertEquals(sb.toString(), "[﻿1,Person][2,Entity][3,Sensor]");
 	}
 
 	@Test(expected = ArrayIndexOutOfBoundsException.class)
@@ -59,6 +59,6 @@ public class CSVTest {
 			sb.append("[" + entry.getKey() + "," + entry.getValue() + "]");
 		}
 
-		assertEquals(sb.toString(), "[2,Entity][3,Sensor][﻿1,Person]");
+		assertEquals(sb.toString(), "[﻿1,Person][2,Entity][3,Sensor]");
 	}
 }
