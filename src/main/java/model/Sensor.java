@@ -1,15 +1,10 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 import model.types.Location;
 
-@Entity
-@Table(name = "Entity")
-@DiscriminatorValue("Entity")
+
 public class Sensor extends Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     private Location location;

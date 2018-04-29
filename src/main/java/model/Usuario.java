@@ -1,29 +1,13 @@
 package model;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="Usuarios")
-@Inheritance(strategy=InheritanceType.JOINED)
-@DiscriminatorColumn(
-    discriminatorType = DiscriminatorType.STRING,
-    name = "Tipo"
-)
 public abstract class Usuario {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long id;
 	private String nombre;
 	private String email;
 	private String codigo;
+	private String password;
+	
 	
 
 	public String getNombre() {
@@ -36,6 +20,30 @@ public abstract class Usuario {
 
 	public String getEmail() {
 		return email;
+	}
+	
+	private void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPassword() {
+		if(password == null){
+			generarPassword();
+		}
+		return password;
+	}
+	private void generarPassword() {
+		StringBuffer pass = new StringBuffer();
+		int low = 65;
+		int top = 90;
+		for (int i = 0; i < 9; i++) {
+			int numAleatorio = (int) Math.floor(Math.random() * (top - low) + low);
+			pass.append((char) numAleatorio);
+		}
+		for (int i = 0; i < 3; i++) {
+			int numAleatorio = (int) Math.floor(Math.random() * (9 - 0) + 0);
+			pass.append(numAleatorio);
+		}
+		setPassword(pass.toString());
 	}
 
 	protected void setEmail(String email) {

@@ -13,9 +13,9 @@
 			<property name="javax.persistence.jdbc.driver" 
 					  value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" 
-					  value="jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11221358" />
-			<property name="javax.persistence.jdbc.user" value="sql11221358" />
-			<property name="javax.persistence.jdbc.password" value="zVYk5vyJ7l" />
+					  value="jdbc:mysql://localhost:3306/asw" />
+			<property name="javax.persistence.jdbc.user" value="pepito" />
+			<property name="javax.persistence.jdbc.password" value="password2017" />
 			<property name="hibernate.dialect" 
 					  value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.show_sql" value="true" />

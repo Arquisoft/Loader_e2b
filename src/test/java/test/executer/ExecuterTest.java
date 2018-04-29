@@ -13,6 +13,7 @@ import org.junit.Test;
 import com.lowagie.text.DocumentException;
 
 import executer.ActionSingleton;
+import model.Agent;
 import model.Ciudadano;
 import model.Usuario;
 import persistence.UserFinder;
@@ -35,9 +36,9 @@ public class ExecuterTest {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		
-		Usuario Usuario2 = UserFinder.findByEmail("francisco@gmail.com").get(0);
+		Agent Usuario2 = UserFinder.findByEmail("francisco@gmail.com").get(0);
 		
-		assertEquals(Usuario, Usuario2);
+		assertEquals(Usuario.getNombre(), Usuario2.getNombre());
 		
 		trx.commit();
 		

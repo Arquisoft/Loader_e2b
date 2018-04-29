@@ -2,6 +2,7 @@ package dbupdate;
 
 import java.util.List;
 
+import model.Agent;
 import model.Usuario;
 
 /**
@@ -11,9 +12,9 @@ import model.Usuario;
  *
  */
 public interface Insert {
-	List<Usuario> findByEmail(String email);
+	List<Agent> findByEmail(String email);
 
 	Usuario save(Usuario user);
 
-	List<Usuario> findByDNI(String dni);
+	List<Agent> findByDNI(String dni);
 }

@@ -1,8 +1,5 @@
 package model.types;
 
-import javax.persistence.Embeddable;
-
-@Embeddable
 public class Location {
     private String latitude;
     private String longitude;

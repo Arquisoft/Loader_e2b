@@ -4,6 +4,7 @@ import java.util.List;
 
 import dbupdate.Insert;
 import dbupdate.InsertP;
+import model.Agent;
 import model.Usuario;
 import persistence.UserFinder;
 
@@ -15,12 +16,12 @@ public class InsertR implements Insert {
 	}
 
 	@Override
-	public List<Usuario> findByDNI(String dni) {
-		return UserFinder.findByDNI(dni);
+	public List<Agent> findByDNI(String dni) {
+		return UserFinder.findByIdent(dni);
 	}
 
 	@Override
-	public List<Usuario> findByEmail(String email) {
+	public List<Agent> findByEmail(String email) {
 		return UserFinder.findByEmail(email);
 	}
 }

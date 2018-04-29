@@ -7,6 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 
+import model.Agent;
+import model.Ciudadano;
+import model.Sensor;
 import model.Usuario;
 import parser.cartas.LetterGenerator;
 import persistence.UserFinder;
@@ -21,7 +24,7 @@ public class InsertP implements Insert {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		try {
-			if (!UserFinder.findByDNI(user.getCodigo()).isEmpty()) {
+			if (!UserFinder.findByIdent(user.getCodigo()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
 						"El usuario con el dni " + user.getCodigo() + " ya existe en la base de datos");
 				trx.rollback();
@@ -30,7 +33,9 @@ public class InsertP implements Insert {
 						"Ya existe un usuario con el email " + user.getEmail() + " en la base de datos");
 				trx.rollback();
 			} else {
-				Jpa.getManager().persist(user);
+				Agent a = new Agent(user.getNombre(), user.getEmail(), user.getPassword(), user.getCodigo(),
+						user instanceof Ciudadano ? 1 : (user instanceof Sensor ? 3 : 2));
+				Jpa.getManager().persist(a);
 				trx.commit();
 				
 				LetterGenerator.generateTxtLetter(user);
@@ -50,12 +55,12 @@ public class InsertP implements Insert {
 	}
 
 	@Override
-	public List<Usuario> findByDNI(String dni) {
-		return UserFinder.findByDNI(dni);
+	public List<Agent> findByDNI(String dni) {
+		return UserFinder.findByIdent(dni);
 	}
 
 	@Override
-	public List<Usuario> findByEmail(String email) {
+	public List<Agent> findByEmail(String email) {
 		return UserFinder.findByEmail(email);
 	}
 }

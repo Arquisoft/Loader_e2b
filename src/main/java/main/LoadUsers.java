@@ -23,7 +23,7 @@ public class LoadUsers {
 		else if (args[0].equals("info"))
 			showInfo();
 		else if (args[0].equals("load")) {
-			if (args.length < 2)
+			if (args.length < 3)
 				System.err.println(
 						"La operación load necesita al menos otro argumento con la ubicación del fichero");
 			else {
